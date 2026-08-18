@@ -1,0 +1,39 @@
+# Environments
+venv/
+.venv/
+env/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Database
+*.db
+*.sqlite3
+backend/database/road_damage_v2.db
+
+# Logs
+*.log
+model_service.log
+
+# Uploads and User Data
+frontend/static/uploads/*
+backend/static/uploads/*
+!frontend/static/uploads/.gitkeep
+!backend/static/uploads/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# ML Models (Optional: uncomment if you don't want to commit large model files)
+# backend/model/*.h5
+# backend/model/*.tflite
+
+backend/model/road_damage_detector.h5
+backend/database/*.db
+
