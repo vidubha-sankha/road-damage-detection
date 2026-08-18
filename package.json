@@ -1,0 +1,9 @@
+{
+  "name": "road-damage-system",
+  "version": "1.0.0",
+  "description": "Road Damage Detection System",
+  "scripts": {
+    "dev": ".\\venv\\Scripts\\python.exe backend\\app.py",
+    "model": ".\\venv\\Scripts\\python.exe backend\\model_service.py"
+  }
+}
