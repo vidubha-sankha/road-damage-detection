@@ -2,7 +2,6 @@
 venv/
 .venv/
 env/
-.env
 
 # Python
 __pycache__/
@@ -26,7 +25,6 @@ backend/static/uploads/*
 !backend/static/uploads/.gitkeep
 
 # IDEs
-.vscode/
 .idea/
 *.swp
 
@@ -37,3 +35,5 @@ backend/static/uploads/*
 backend/model/road_damage_detector.h5
 backend/database/*.db
 
+config.bat
+node_modules

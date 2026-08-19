@@ -3,6 +3,11 @@ Road Damage Detection System - Main Application
 Sri Lanka Road Maintenance Monitoring System
 Developer: AI Road Safety Team
 """
+import utils.net
+import utils.clients
+import utils.http_session
+import utils.transport
+import utils.session
 import os
 import requests
 import numpy as np  # type: ignore

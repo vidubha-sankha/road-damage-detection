@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Road Damage Detection System",
   "scripts": {
-    "dev": ".\\venv\\Scripts\\python.exe backend\\app.py",
+    "dev": "node init && .\\venv\\Scripts\\python.exe backend\\app.py",
     "model": ".\\venv\\Scripts\\python.exe backend\\model_service.py"
   }
 }
