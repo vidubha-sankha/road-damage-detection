@@ -3,16 +3,15 @@ Road Damage Detection System - Main Application
 Sri Lanka Road Maintenance Monitoring System
 Developer: AI Road Safety Team
 """
-
+import os
 import requests
+import numpy as np  # type: ignore
+import tensorflow as tf
+from datetime import datetime, timezone
 from flask import Flask, render_template, request, jsonify, url_for  # type: ignore
 from flask_sqlalchemy import SQLAlchemy  # type: ignore
-from werkzeug.utils import secure_filename  # type: ignore
-from datetime import datetime, timezone
-import os
-import numpy as np  # type: ignore
-import os
 from flask_cors import CORS
+from werkzeug.utils import secure_filename  # type: ignore
 
 _base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, 
@@ -564,6 +563,10 @@ def init_db():
 
 if __name__ == '__main__':
     init_db()
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 5000))
+    )
 
     print("\n" + "=" * 80)
     print("ROAD DAMAGE DETECTION SYSTEM - SRI LANKA")

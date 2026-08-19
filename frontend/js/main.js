@@ -36,7 +36,8 @@ function initializeUploadForm() {
 
         try {
             // Submit form
-            const response = await fetch('/upload', {
+            const API_URL = 'https://road-damage-backend-aez2.onrender.com';
+            const response = await fetch(`${API_URL}/upload`, {
                 method: 'POST',
                 body: formData
             });
