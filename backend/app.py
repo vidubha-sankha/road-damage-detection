@@ -330,6 +330,81 @@ def api_reports():
     return jsonify([report.to_dict() for report in reports])
 
 
+@app.route('/api/analysis')
+def api_analysis():
+    """Return statistical analysis data as JSON"""
+    try:
+        all_reports = RoadDamageReport.query.all()
+
+        total = len(all_reports)
+
+        damage_count = sum(
+            1 for r in all_reports
+            if r.prediction_class == 'damage'
+        )
+
+        no_damage_count = sum(
+            1 for r in all_reports
+            if r.prediction_class == 'no_damage'
+        )
+
+        severity_counts = {
+            'critical': sum(
+                1 for r in all_reports if r.severity == 'critical'
+            ),
+            'high': sum(
+                1 for r in all_reports if r.severity == 'high'
+            ),
+            'medium': sum(
+                1 for r in all_reports if r.severity == 'medium'
+            ),
+            'low': sum(
+                1 for r in all_reports if r.severity == 'low'
+            )
+        }
+
+        status_counts = {
+            'pending': sum(
+                1 for r in all_reports if r.status == 'pending'
+            ),
+            'in_progress': sum(
+                1 for r in all_reports if r.status == 'in_progress'
+            ),
+            'completed': sum(
+                1 for r in all_reports if r.status == 'completed'
+            )
+        }
+
+        avg_confidence = (
+            np.mean([r.confidence_score for r in all_reports])
+            if all_reports else 0
+        )
+
+        return jsonify({
+            'success': True,
+            'total_reports': total,
+            'damage_reports': damage_count,
+            'no_damage_reports': no_damage_count,
+            'damage_percentage': round(
+                (damage_count / total * 100)
+                if total > 0 else 0,
+                2
+            ),
+            'severity_counts': severity_counts,
+            'status_counts': status_counts,
+            'avg_confidence': round(avg_confidence * 100, 2),
+            'model_accuracy': 90.5
+        })
+
+    except Exception as e:
+        print(f"Analysis API error: {e}")
+
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+
 @app.route('/api/report/<int:report_id>')
 def api_report(report_id):
     """API endpoint to get specific report"""
