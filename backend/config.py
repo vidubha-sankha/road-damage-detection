@@ -24,7 +24,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Upload settings
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, '..', 'frontend', 'static', 'uploads')
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp'}
 
