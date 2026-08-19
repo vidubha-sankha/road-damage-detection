@@ -11,21 +11,24 @@ from werkzeug.utils import secure_filename  # type: ignore
 from datetime import datetime, timezone
 import os
 import numpy as np  # type: ignore
+
 # Initialize Flask app
-import os
 _base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, 
             template_folder=os.path.join(_base_dir, '..', 'frontend'),
             static_folder=os.path.join(_base_dir, '..', 'frontend'))
 
+# Load configuration settings
+app.config.from_object('config.Config')
+
 # Ensure required directories exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(
     os.path.dirname(
-        app.config['SQLALCHEMY_DATABASE_URI'].replace(
-            'sqlite:///',
-            '')),
-    exist_ok=True)
+        app.config['SQLALCHEMY_DATABASE_URI'].replace('sqlite:///', '')
+    ),
+    exist_ok=True
+)
 os.makedirs(os.path.join(app.config['BASE_DIR'], 'model'), exist_ok=True)
 
 # Initialize database
