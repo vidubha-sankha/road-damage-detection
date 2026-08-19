@@ -15,9 +15,8 @@ import numpy as np  # type: ignore
 import os
 _base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, 
-            template_folder=os.path.join(_base_dir, '..', 'frontend', 'templates'),
-            static_folder=os.path.join(_base_dir, '..', 'frontend', 'static'))
-app.config.from_object('config.Config')
+            template_folder=os.path.join(_base_dir, '..', 'frontend'),
+            static_folder=os.path.join(_base_dir, '..', 'frontend'))
 
 # Ensure required directories exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
