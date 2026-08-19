@@ -255,5 +255,6 @@ def status():
 
 
 if __name__ == '__main__':
-    print("Starting Model Service on port 5001...")
-    model_app.run(host='0.0.0.0', port=5001)
+    port = int(os.environ.get('PORT', 5001))
+    print(f"Starting Model Service on port {port}...")
+    model_app.run(host='0.0.0.0', port=port)
