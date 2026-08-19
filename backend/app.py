@@ -11,12 +11,15 @@ from werkzeug.utils import secure_filename  # type: ignore
 from datetime import datetime, timezone
 import os
 import numpy as np  # type: ignore
+import os
+from flask_cors import CORS
 
-# Initialize Flask app
 _base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, 
             template_folder=os.path.join(_base_dir, '..', 'frontend'),
             static_folder=os.path.join(_base_dir, '..', 'frontend'))
+
+CORS(app)
 
 # Load configuration settings
 app.config.from_object('config.Config')
